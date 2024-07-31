@@ -4,7 +4,6 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'dart:ui';
 
-
 class Home extends StatefulWidget {
   const Home({super.key});
 
@@ -22,7 +21,7 @@ class _HomeState extends State<Home> {
     ["Bulb 02", "assets/icons/window.png", false],
     ["Bulb 03", "assets/icons/smart-tv.png", false],
     ["Fan", "assets/icons/fan.png", false],
-    ["Smart Light", "assets/icons/light-bulb.png", false],
+    ["Door", "assets/icons/light-bulb.png", false],
     ["Smart AC", "assets/icons/air-conditioner.png", false],
   ];
 
@@ -64,117 +63,123 @@ class _HomeState extends State<Home> {
     return Scaffold(
       backgroundColor: Colors.black,
       body: SafeArea(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 35.0, vertical: 25.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: const [
-                  Icon(Icons.dashboard, size: 40, color: Colors.white),
-                  Icon(Icons.person, size: 40, color: Colors.white),
-                ],
-              ),
-            ),
-            const SizedBox(height: 20.0),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 35.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: const [
-                  Text(
-                    "Welcome",
-                    style: TextStyle(fontSize: 18, color: Colors.white, fontWeight: FontWeight.bold),
-                  ),
-                  Text(
-                    "Smart Lodge System",
-                    style: TextStyle(fontSize: 35, color: Colors.blueAccent, fontWeight: FontWeight.bold),
-                  ),
-                ],
-              ),
-            ),
-            const SizedBox(height: 20.0),
-            Center(
-              child: Padding(
-                padding: const EdgeInsets.all(20.0),
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 35.0, vertical: 25.0),
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Expanded(
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: Colors.grey[300],
-                          borderRadius: BorderRadius.circular(25.0),
-                        ),
-                        padding: const EdgeInsets.symmetric(vertical: 30.0),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            const Text(
-                              "Humidity",
-                              style: TextStyle(fontSize: 25.0, fontWeight: FontWeight.bold),
-                            ),
-                            const SizedBox(height: 20.0),
-                            CircularPercentIndicator(
-                              radius: 100.0,
-                              lineWidth: 13.0,
-                              percent: humidity,
-                              center: Text(
-                                "${(humidity * 100).toStringAsFixed(1)}%",
-                                style: const TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
-                              ),
-                              progressColor: Colors.blue,
-                            ),
-                          ],
-                        ),
-                      ),
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: const [
+                    Icon(Icons.dashboard, size: 40, color: Colors.white),
+                    Icon(Icons.person, size: 40, color: Colors.white),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 20.0),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 35.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: const [
+                    Text(
+                      "Welcome",
+                      style: TextStyle(fontSize: 18, color: Colors.white, fontWeight: FontWeight.bold),
                     ),
-                    const SizedBox(width: 20.0),
-                    Expanded(
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: Colors.grey[300],
-                          borderRadius: BorderRadius.circular(25.0),
-                        ),
-                        padding: const EdgeInsets.symmetric(vertical: 30.0),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            const Text(
-                              "Temperature",
-                              style: TextStyle(fontSize: 25.0, fontWeight: FontWeight.bold),
-                            ),
-                            const SizedBox(height: 20.0),
-                            CircularPercentIndicator(
-                              radius: 100.0,
-                              lineWidth: 13.0,
-                              percent: temperature / 100, // Assuming temperature is a percentage
-                              center: Text(
-                                "${temperature.toStringAsFixed(1)}°C",
-                                style: const TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
-                              ),
-                              progressColor: Colors.red,
-                            ),
-                          ],
-                        ),
-                      ),
+                    Text(
+                      "Smart Lodge System",
+                      style: TextStyle(fontSize: 35, color: Colors.blueAccent, fontWeight: FontWeight.bold),
                     ),
                   ],
                 ),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 35.0),
-              child: const Text(
-                "Device List",
-                style: TextStyle(fontSize: 18, color: Colors.white, fontWeight: FontWeight.w600),
+              const SizedBox(height: 20.0),
+              Center(
+                child: Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Expanded(
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: Colors.grey[300],
+                            borderRadius: BorderRadius.circular(25.0),
+                          ),
+                          padding: const EdgeInsets.symmetric(vertical: 30.0),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              const Text(
+                                "Humidity",
+                                style: TextStyle(fontSize: 25.0, fontWeight: FontWeight.bold),
+                              ),
+                              const SizedBox(height: 20.0),
+                              Icon(Icons.water_drop, size: 40, color: Colors.blue),
+                              const SizedBox(height: 20.0),
+                              CircularPercentIndicator(
+                                radius: 100.0,
+                                lineWidth: 13.0,
+                                percent: humidity,
+                                center: Text(
+                                  "${(humidity * 100).toStringAsFixed(1)}%",
+                                  style: const TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
+                                ),
+                                progressColor: Colors.blue,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      const SizedBox(width: 20.0),
+                      Expanded(
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: Colors.grey[300],
+                            borderRadius: BorderRadius.circular(25.0),
+                          ),
+                          padding: const EdgeInsets.symmetric(vertical: 30.0),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              const Text(
+                                "Temperature",
+                                style: TextStyle(fontSize: 25.0, fontWeight: FontWeight.bold),
+                              ),
+                              const SizedBox(height: 20.0),
+                              Icon(Icons.wb_sunny, size: 40, color: Colors.red),
+                              const SizedBox(height: 20.0),
+                              CircularPercentIndicator(
+                                radius: 100.0,
+                                lineWidth: 13.0,
+                                percent: temperature / 100, // Assuming temperature is a percentage
+                                center: Text(
+                                  "${temperature.toStringAsFixed(1)}°C",
+                                  style: const TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
+                                ),
+                                progressColor: Colors.red,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
               ),
-            ),
-            Expanded(
-              child: GridView.builder(
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 35.0),
+                child: const Text(
+                  "Device List",
+                  style: TextStyle(fontSize: 18, color: Colors.white, fontWeight: FontWeight.w600),
+                ),
+              ),
+              GridView.builder(
                 itemCount: devices.length,
                 padding: const EdgeInsets.all(20.0),
+                shrinkWrap: true,
+                physics: NeverScrollableScrollPhysics(),
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
                 ),
@@ -227,8 +232,8 @@ class _HomeState extends State<Home> {
                   );
                 },
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
